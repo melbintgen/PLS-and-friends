@@ -4,29 +4,23 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Minimal Book Example</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <title>Partial least squares (PLS) and friends</title>
+  <meta name="description" content="This is a bookdown to explain main concepts of PLS and its related methods." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Minimal Book Example" />
+  <meta property="og:title" content="Partial least squares (PLS) and friends" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="This is a bookdown to explain main concepts of PLS and its related methods." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Minimal Book Example" />
+  <meta name="twitter:title" content="Partial least squares (PLS) and friends" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="This is a bookdown to explain main concepts of PLS and its related methods." />
   
 
-<meta name="author" content="John Doe" />
+<meta name="author" content="JDM and friends" />
 
 
 <meta name="date" content="2024-10-15" />
@@ -37,7 +31,7 @@ set in the _output.yml file.</p>" />
   
   
 
-<link rel="next" href="hello-bookdown.html"/>
+<link rel="next" href="preliminaries.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -84,14 +78,19 @@ set in the _output.yml file.</p>" />
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#notation"><i class="fa fa-check"></i><b>1.1</b> Notation</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a>
+<li class="chapter" data-level="2" data-path="preliminaries.html"><a href="preliminaries.html"><i class="fa fa-check"></i><b>2</b> Preliminaries</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a>
-<ul>
-<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
-</ul></li>
+<li class="chapter" data-level="2.1" data-path="preliminaries.html"><a href="preliminaries.html#inner-product"><i class="fa fa-check"></i><b>2.1</b> Inner product</a></li>
+<li class="chapter" data-level="2.2" data-path="preliminaries.html"><a href="preliminaries.html#inner-product-as-projection"><i class="fa fa-check"></i><b>2.2</b> Inner product as projection</a></li>
+<li class="chapter" data-level="2.3" data-path="preliminaries.html"><a href="preliminaries.html#matrix-product"><i class="fa fa-check"></i><b>2.3</b> Matrix product</a></li>
+<li class="chapter" data-level="2.4" data-path="preliminaries.html"><a href="preliminaries.html#column-row-space-of-a-matrix"><i class="fa fa-check"></i><b>2.4</b> Column (row) space of a matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="preliminaries.html"><a href="preliminaries.html#rank-of-a-matrix"><i class="fa fa-check"></i><b>2.5</b> Rank of a matrix</a></li>
+<li class="chapter" data-level="2.6" data-path="preliminaries.html"><a href="preliminaries.html#matrix-as-linear-transform"><i class="fa fa-check"></i><b>2.6</b> Matrix as linear transform</a></li>
+<li class="chapter" data-level="2.7" data-path="preliminaries.html"><a href="preliminaries.html#orthogonalisation"><i class="fa fa-check"></i><b>2.7</b> Orthogonalisation</a></li>
+<li class="chapter" data-level="2.8" data-path="preliminaries.html"><a href="preliminaries.html#orthogonal-bases"><i class="fa fa-check"></i><b>2.8</b> Orthogonal bases</a></li>
+<li class="chapter" data-level="2.9" data-path="preliminaries.html"><a href="preliminaries.html#singular-value-decomposition"><i class="fa fa-check"></i><b>2.9</b> Singular value decomposition</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -105,7 +104,7 @@ set in the _output.yml file.</p>" />
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Partial least squares (PLS) and friends</a>
           </h1>
         </div>
 
@@ -114,18 +113,25 @@ set in the _output.yml file.</p>" />
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">A Minimal Book Example</h1>
-<p class="author"><em>John Doe</em></p>
+<h1 class="title">Partial least squares (PLS) and friends</h1>
+<p class="author"><em>JDM and friends</em></p>
 <p class="date"><em>2024-10-15</em></p>
 </div>
 <div id="about" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports; for example, a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<div id="usage" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Usage<a href="index.html#usage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Each <strong>bookdown</strong> chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter <em>must</em> start with a first-level heading: <code># A good chapter</code>, and can contain one (and only one) first-level heading.</p>
-<p>Use second-level and higher headings within chapters like: <code>## A short section</code> or <code>### An even shorter section</code>.</p>
-<p>The <code>index.Rmd</code> file is required, and is also your first book chapter. It will be the homepage when you render the book.</p>
+<div id="notation" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Notation<a href="index.html#notation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p><span class="math inline">\(a, b\)</span>: scalars, i.e., elements of <span class="math inline">\(\mathbb{R}\)</span>, the set of real numbers.</p></li>
+<li><p><span class="math inline">\(X, Y\)</span>: matrices; <span class="math inline">\(X \in \mathbb{R}^{n\times p}\)</span> is an <span class="math inline">\(n\)</span> by <span class="math inline">\(p\)</span> matrix.</p></li>
+<li><p><span class="math inline">\(\boldsymbol{a}, \boldsymbol{b}\)</span>: column vectors (i.e., vectors are by default column vectors); <span class="math inline">\(\boldsymbol{a} \in \mathbb{R}^{n \times 1}\)</span> has <span class="math inline">\(n\)</span> elements, i.e., <span class="math inline">\(\boldsymbol{a} = (a_1,\dots,a_n)^\top\)</span>.</p></li>
+<li><p><span class="math inline">\(\lvert a \rvert\)</span>: length of vector <span class="math inline">\(\boldsymbol{a}\)</span>, i.e., <span class="math inline">\(\lvert \boldsymbol{a} \rvert = \left( \sum_{i=1}^n a_i^2 \right)^{1/2}\)</span>.</p></li>
+<li><p><span class="math inline">\(\angle (\boldsymbol{a}, \boldsymbol{b})\)</span>: angle (between <span class="math inline">\(-90^\circ\)</span> and <span class="math inline">\(90^\circ\)</span>) between two vectors.</p></li>
+<li><p><span class="math inline">\(\bar{\boldsymbol{a}}\)</span>: average of elements in <span class="math inline">\(\boldsymbol{a}\)</span>, i.e., <span class="math inline">\(\bar{\boldsymbol{a}} = n^{-1} \sum_{i=1}^n a_i\)</span>.</p></li>
+<li><p><span class="math inline">\(var(\boldsymbol{a})\)</span>: variance of elements in <span class="math inline">\(\boldsymbol{a}\)</span>, i.e., <span class="math inline">\(var(\boldsymbol{a}) = n^{-1} \sum_{i=1}^{n} (a_i - \bar{\boldsymbol{a}})^2\)</span>.</p></li>
+<li><p><span class="math inline">\(X^\top, \boldsymbol{a}^\top\)</span>: transpose of matrix and vectors.</p></li>
+<li><p><span class="math inline">\(\equiv\)</span>: always equivalent to, or equivalent by definition; e.g., <span class="math inline">\(c \equiv \boldsymbol{a}^\top \boldsymbol{b}\)</span> says that <span class="math inline">\(c\)</span> is defined as the inner product between <span class="math inline">\(\boldsymbol{a}\)</span> and <span class="math inline">\(\boldsymbol{b}\)</span>.</p></li>
+</ul>
 
 </div>
 </div>
@@ -135,7 +141,7 @@ set in the _output.yml file.</p>" />
         </div>
       </div>
 
-<a href="hello-bookdown.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="preliminaries.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

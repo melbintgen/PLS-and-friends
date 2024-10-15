@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Preliminaries | Partial least squares (PLS) and friends</title>
+  <meta name="description" content="This is a bookdown to explain main concepts of PLS and its related methods." />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Preliminaries | Partial least squares (PLS) and friends" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a bookdown to explain main concepts of PLS and its related methods." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Preliminaries | Partial least squares (PLS) and friends" />
+  
+  <meta name="twitter:description" content="This is a bookdown to explain main concepts of PLS and its related methods." />
+  
+
+<meta name="author" content="JDM and friends" />
+
+
+<meta name="date" content="2024-10-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#notation"><i class="fa fa-check"></i><b>1.1</b> Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="preliminaries.html"><a href="preliminaries.html"><i class="fa fa-check"></i><b>2</b> Preliminaries</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="preliminaries.html"><a href="preliminaries.html#inner-product"><i class="fa fa-check"></i><b>2.1</b> Inner product</a></li>
+<li class="chapter" data-level="2.2" data-path="preliminaries.html"><a href="preliminaries.html#inner-product-as-projection"><i class="fa fa-check"></i><b>2.2</b> Inner product as projection</a></li>
+<li class="chapter" data-level="2.3" data-path="preliminaries.html"><a href="preliminaries.html#matrix-product"><i class="fa fa-check"></i><b>2.3</b> Matrix product</a></li>
+<li class="chapter" data-level="2.4" data-path="preliminaries.html"><a href="preliminaries.html#column-row-space-of-a-matrix"><i class="fa fa-check"></i><b>2.4</b> Column (row) space of a matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="preliminaries.html"><a href="preliminaries.html#rank-of-a-matrix"><i class="fa fa-check"></i><b>2.5</b> Rank of a matrix</a></li>
+<li class="chapter" data-level="2.6" data-path="preliminaries.html"><a href="preliminaries.html#matrix-as-linear-transform"><i class="fa fa-check"></i><b>2.6</b> Matrix as linear transform</a></li>
+<li class="chapter" data-level="2.7" data-path="preliminaries.html"><a href="preliminaries.html#orthogonalisation"><i class="fa fa-check"></i><b>2.7</b> Orthogonalisation</a></li>
+<li class="chapter" data-level="2.8" data-path="preliminaries.html"><a href="preliminaries.html#orthogonal-bases"><i class="fa fa-check"></i><b>2.8</b> Orthogonal bases</a></li>
+<li class="chapter" data-level="2.9" data-path="preliminaries.html"><a href="preliminaries.html#singular-value-decomposition"><i class="fa fa-check"></i><b>2.9</b> Singular value decomposition</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Partial least squares (PLS) and friends</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="preliminaries" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Preliminaries<a href="preliminaries.html#preliminaries" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We briefly review some basics from matrix algebra. We will focus on explaining the geometric intuition behind the concepts and how they are interconnected.</p>
+<div id="inner-product" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Inner product<a href="preliminaries.html#inner-product" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The inner product <strong>aᵀb</strong> results in a scalar:</p>
+<p><span class="math display">\[
+c \equiv \mathbf{a}^\top \mathbf{b} = \lvert \mathbf{a} \rvert \lvert \mathbf{b} \rvert \cos \{ \angle(\mathbf{a}, \mathbf{b}) \}.
+\]</span></p>
+<p>If <span class="math inline">\(\lvert \mathbf{a} \rvert =  \lvert \mathbf{b} \rvert  = 1\)</span>, i.e., <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> are <em>unit vectors</em>, we have</p>
+<p><span class="math display">\[
+\mathbf{a}^\top \mathbf{b} = \cos \{ \angle(\mathbf{a}, \mathbf{b}) \},
+\]</span></p>
+<p>which measures the affinity/similarity between <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span>.</p>
+<p>To illustrate the idea of affinity/similarity further, if <span class="math inline">\(\breve{\mathbf{a}}, \breve{\mathbf{b}}\)</span> denote the centered versions of <span class="math inline">\(\mathbf{a}, \mathbf{b}\)</span>, then we actually have (you can work out why)</p>
+<p><span class="math display">\[
+cov(\breve{\mathbf{a}}, \breve{\mathbf{b}}) \equiv \breve{\mathbf{a}}^\top \breve{\mathbf{b}} = \{var(\breve{\mathbf{a}})var(\breve{\mathbf{b}})\}^{1/2} \cos(\breve{\mathbf{a}}, \breve{\mathbf{b}}).
+\]</span></p>
+<p>That is to say <span class="math inline">\(\cos(\breve{\mathbf{a}}, \breve{\mathbf{b}}) = cor(\breve{\mathbf{a}}, \breve{\mathbf{b}})\)</span>.</p>
+</div>
+<div id="inner-product-as-projection" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Inner product as projection<a href="preliminaries.html#inner-product-as-projection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consider the case where <span class="math inline">\(\mathbf{a}, \mathbf{x} \in \mathbb{R}^n\)</span> with <span class="math inline">\(\lvert \mathbf{a}\rvert = 1\)</span>, then <span class="math inline">\(\mathbf{x}^\top \mathbf{a}\)</span> defines the length of <span class="math inline">\(\hat{\mathbf{x}}\)</span>, the projection of <span class="math inline">\(\mathbf{x}\)</span> unto the direction defined by <span class="math inline">\(\mathbf{a}\)</span>.</p>
+</div>
+<div id="matrix-product" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Matrix product<a href="preliminaries.html#matrix-product" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consider two matrices <span class="math inline">\(A \in \mathbb{R}^{n \times p}\)</span> and <span class="math inline">\(B \in \mathbb{R}^{p \times r}\)</span>. Let <span class="math inline">\(\mathbf{a}_1^\top, \dots, \mathbf{a}_n^\top \in \mathbb{R}^{1 \times p}\)</span> denote the rows of <span class="math inline">\(A\)</span> and <span class="math inline">\(\mathbf{b}_1, \dots, \mathbf{b}_r \in \mathbb{R}^{p \times 1}\)</span> denote the columns of <span class="math inline">\(B\)</span>. Then the product <span class="math inline">\(AB\)</span> is defined by</p>
+<p><span class="math display">\[
+AB =
+\left[
+\begin{array}{cccc}
+    \mathbf{a}_1^\top \mathbf{b}_1 &amp; \mathbf{a}_1^\top \mathbf{b}_2 &amp; \cdots &amp; \mathbf{a}_1^\top \mathbf{b}_r \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    \mathbf{a}_n^\top \mathbf{b}_1 &amp; \mathbf{a}_n^\top \mathbf{b}_2 &amp; \cdots &amp; \mathbf{a}_n^\top \mathbf{b}_r
+\end{array}
+\right] \equiv \bigl(\mathbf{a}_i^\top \mathbf{b}_j \bigr)_{ij}.
+\]</span></p>
+<p>That is, the matrix product can be viewed as a structured way of calculating vector inner products (proximity/similarity).</p>
+<p>In the special case where <span class="math inline">\(X \in \mathbb{R}^{n \times p}\)</span> and <span class="math inline">\(Y \in \mathbb{R}^{n \times q}\)</span> are column-centered, <span class="math inline">\(var(X) = X^\top X\)</span> and <span class="math inline">\(cov(X,Y) = X^\top Y\)</span> are the covariance matrices. That is, proximity of column vectors (variables).</p>
+</div>
+<div id="column-row-space-of-a-matrix" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Column (row) space of a matrix<a href="preliminaries.html#column-row-space-of-a-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For <span class="math inline">\(A \in \mathbb{R}^{n \times p}\)</span>, the column space of <span class="math inline">\(A\)</span> is defined as</p>
+<p><span class="math display">\[
+\operatorname{Col}(A) = \bigl\{ \mathbf \alpha \in \mathbb{R}^{n \times 1} \big | \mathbf \alpha = A\mathbf x \text{ for some } \mathbf x \in \mathbb{R}^{p \times 1} \bigr\}.
+\]</span></p>
+<p>Let <span class="math inline">\(\mathbf{a}_1, \dots, \mathbf{a}_p\)</span> denote the <span class="math inline">\(p\)</span> columns of <span class="math inline">\(A\)</span>. The above definition states that <span class="math inline">\(\operatorname{Col}(A)\)</span> contains all vectors <span class="math inline">\(\mathbf \alpha\)</span> that can be written as <span class="math inline">\(\mathbf \alpha = x_1 \mathbf{a}_1 + \ldots + x_n \mathbf{a}_n\)</span>, i.e., linear combinations of the column vectors of <span class="math inline">\(A\)</span>.</p>
+<p>The column vectors <span class="math inline">\(\mathbf{a}_1, \ldots, \mathbf{a}_n\)</span> therefore define a linear space <span class="math inline">\(\operatorname{Col}(A)\)</span>, i.e., a collection of vectors whose arbitrary linear combinations are also in that collection. We refer to <span class="math inline">\(\mathbf{a}_1, \ldots, \mathbf{a}_n\)</span> as the <em>basis</em> of <span class="math inline">\(\operatorname{Col}(A)\)</span>; we also say that the basis vectors <span class="math inline">\(\mathbf{a}_1, \ldots, \mathbf{a}_n\)</span> <em>span</em> the space <span class="math inline">\(\operatorname{Col}(A)\)</span>.</p>
+</div>
+<div id="rank-of-a-matrix" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Rank of a matrix<a href="preliminaries.html#rank-of-a-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes a basis can contain redundant basis vectors. For example, consider a matrix <span class="math inline">\(A = (\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3)\)</span> where <span class="math inline">\(\mathbf{a}_2 = 0.4\mathbf{a}_1 + 0.6\mathbf{a}_3\)</span>. Then, in terms of defining the column space <span class="math inline">\(\operatorname{Col}(A)\)</span>, <span class="math inline">\(\mathbf{a}_2\)</span> is redundant. In this case, we say that <span class="math inline">\(A\)</span> is not of <em>full rank</em>, or that <span class="math inline">\(A\)</span> is <em>rank deficient</em>. The rank of <span class="math inline">\(A\)</span>, denoted by <span class="math inline">\(rank(A)\)</span>, is defined as the number of <em>linearly independent</em> column vectors. (It is also equivalent to the number of linearly independent <em>row</em> vectors.) The value of <span class="math inline">\(rank(A)\)</span> gives us a good indicator of the “true dimensionality” of <span class="math inline">\(A\)</span>.</p>
+<p>In biology, suppose we have a gene expression matrix <span class="math inline">\(X \in \mathbb{R}^{n \times p}\)</span> with normalized values. Then <span class="math inline">\(X\)</span> not having full rank means that the expression level of some gene can be perfectly predicted as the linear combinations of other genes. We can safely exclude this redundant gene from analysis without causing any information loss. In reality, however, due to observational noise, we can rarely have a strictly rank deficient gene expression matrix. Instead, it is often useful to assume that the observed gene expression <span class="math inline">\(X\)</span> is an additive combination of signal and noise, i.e., <span class="math inline">\(X = A + E\)</span>, where <span class="math inline">\(A\)</span> is a low-rank signal matrix and <span class="math inline">\(E\)</span> is a full rank noise matrix.</p>
+</div>
+<div id="matrix-as-linear-transform" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Matrix as linear transform<a href="preliminaries.html#matrix-as-linear-transform" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With the definition of column and row spaces in mind, we can view a matrix <span class="math inline">\(A \in \mathbb{R}^{n \times p}\)</span> as defining a linear transform from <span class="math inline">\(\operatorname{A}\)</span> to <span class="math inline">\(\operatorname{Row(A)}\)</span>, i.e., from <span class="math inline">\(\mathbb{R}^{p}\)</span> to <span class="math inline">\(\mathbb{R}^n\)</span>. Taking <span class="math inline">\(\mathbf x \in \mathbb{R}^{p \times 1}\)</span>, <span class="math inline">\(A\mathbf x\)</span> defines a vector that lives in <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<p>For <span class="math inline">\(X \in \mathbb{R}^{n \times p}\)</span> and <span class="math inline">\(Y \in \mathbb{R}^{n \times K}\)</span>.</p>
+</div>
+<div id="orthogonalisation" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Orthogonalisation<a href="preliminaries.html#orthogonalisation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In data analysis</p>
+</div>
+<div id="orthogonal-bases" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Orthogonal bases<a href="preliminaries.html#orthogonal-bases" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose <span class="math inline">\(A \in \mathbb{R}^{n \times p}\)</span> and <span class="math inline">\(r \equiv rank(A) &lt; p &lt; n\)</span>. Then we can find a subset of <span class="math inline">\(r\)</span> linearly independent column vectors <span class="math inline">\(\mathbf{a}_{i(1)}, \dots, \mathbf{a}_{i(r)}\)</span>, with <span class="math inline">\(i(1), \dots, i(r) \in \{1, \dots, p\}\)</span>, forming a basis for <span class="math inline">\(\operatorname{Col}(A)\)</span>. In general, any set of <span class="math inline">\(r\)</span> linearly independent vectors living in <span class="math inline">\(\operatorname{Col}(A)\)</span> can serve as a (non-redundant) basis of <span class="math inline">\(\operatorname{Col}(A)\)</span>. It is often more convenient to find an <em>orthogonal</em> basis: when we plot a 3D space, we usually try to render 3 vectors that are perpendicular to each other, e.g., <span class="math inline">\((1,0,0)\)</span>, <span class="math inline">\((0,1,0)\)</span>, and <span class="math inline">\((0,0,1)\)</span>.</p>
+</div>
+<div id="singular-value-decomposition" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Singular value decomposition<a href="preliminaries.html#singular-value-decomposition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

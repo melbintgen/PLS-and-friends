@@ -1,4 +1,12 @@
 about
-usage
-hello-bookdown
-a-section
+notation
+preliminaries
+inner-product
+inner-product-as-projection
+matrix-product
+column-row-space-of-a-matrix
+rank-of-a-matrix
+matrix-as-linear-transform
+orthogonalisation
+orthogonal-bases
+singular-value-decomposition

@@ -1,11 +1,79 @@
-# Hello bookdown 
+# Preliminaries
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+We briefly review some basics from matrix algebra. We will focus on explaining the geometric intuition behind the concepts and how they are interconnected. 
 
-## A section
+## Inner product
 
-All chapter sections start with a second-level (`##`) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
+The inner product **aᵀb** results in a scalar:
 
-### An unnumbered section {-}
+\[ 
+c \equiv \mathbf{a}^\top \mathbf{b} = \lvert \mathbf{a} \rvert \lvert \mathbf{b} \rvert \cos \{ \angle(\mathbf{a}, \mathbf{b}) \}.
+\]
 
-Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+If \(\lvert \mathbf{a} \rvert =  \lvert \mathbf{b} \rvert  = 1\), i.e., \(\mathbf{a}\) and \(\mathbf{b}\) are *unit vectors*, we have 
+
+\[
+\mathbf{a}^\top \mathbf{b} = \cos \{ \angle(\mathbf{a}, \mathbf{b}) \},
+\]
+
+which measures the affinity/similarity between \(\mathbf{a}\) and \(\mathbf{b}\).
+
+To illustrate the idea of affinity/similarity further, if \(\breve{\mathbf{a}}, \breve{\mathbf{b}}\) denote the centered versions of \(\mathbf{a}, \mathbf{b}\), then we actually have (you can work out why)
+
+\[
+cov(\breve{\mathbf{a}}, \breve{\mathbf{b}}) \equiv \breve{\mathbf{a}}^\top \breve{\mathbf{b}} = \{var(\breve{\mathbf{a}})var(\breve{\mathbf{b}})\}^{1/2} \cos(\breve{\mathbf{a}}, \breve{\mathbf{b}}).
+\]
+
+That is to say \(\cos(\breve{\mathbf{a}}, \breve{\mathbf{b}}) = cor(\breve{\mathbf{a}}, \breve{\mathbf{b}})\).
+
+## Inner product as projection
+Consider the case where \(\mathbf{a}, \mathbf{x} \in \mathbb{R}^n\) with \(\lvert \mathbf{a}\rvert = 1\), then \(\mathbf{x}^\top \mathbf{a}\) defines the length of \(\hat{\mathbf{x}}\), the projection of \(\mathbf{x}\) unto the direction defined by \(\mathbf{a}\).
+
+## Matrix product
+Consider two matrices \(A \in \mathbb{R}^{n \times p}\) and \(B \in \mathbb{R}^{p \times r}\). Let \(\mathbf{a}_1^\top, \dots, \mathbf{a}_n^\top \in \mathbb{R}^{1 \times p}\) denote the rows of \(A\) and \(\mathbf{b}_1, \dots, \mathbf{b}_r \in \mathbb{R}^{p \times 1}\) denote the columns of \(B\). Then the product \(AB\) is defined by
+
+\[
+AB = 
+\left[
+\begin{array}{cccc}
+    \mathbf{a}_1^\top \mathbf{b}_1 & \mathbf{a}_1^\top \mathbf{b}_2 & \cdots & \mathbf{a}_1^\top \mathbf{b}_r \\
+    \vdots & \vdots & & \vdots \\
+    \mathbf{a}_n^\top \mathbf{b}_1 & \mathbf{a}_n^\top \mathbf{b}_2 & \cdots & \mathbf{a}_n^\top \mathbf{b}_r 
+\end{array}
+\right] \equiv \bigl(\mathbf{a}_i^\top \mathbf{b}_j \bigr)_{ij}.
+\]
+
+That is, the matrix product can be viewed as a structured way of calculating vector inner products (proximity/similarity).
+
+In the special case where \(X \in \mathbb{R}^{n \times p}\) and \(Y \in \mathbb{R}^{n \times q}\) are column-centered, \(var(X) = X^\top X\) and \(cov(X,Y) = X^\top Y\) are the covariance matrices. That is, proximity of column vectors (variables).
+
+## Column (row) space of a matrix
+For \(A \in \mathbb{R}^{n \times p}\), the column space of \(A\) is defined as
+
+\[
+\operatorname{Col}(A) = \bigl\{ \mathbf \alpha \in \mathbb{R}^{n \times 1} \big | \mathbf \alpha = A\mathbf x \text{ for some } \mathbf x \in \mathbb{R}^{p \times 1} \bigr\}.
+\]
+
+Let \(\mathbf{a}_1, \dots, \mathbf{a}_p\) denote the \(p\) columns of \(A\). The above definition states that \(\operatorname{Col}(A)\) contains all vectors \(\mathbf \alpha\) that can be written as \(\mathbf \alpha = x_1 \mathbf{a}_1 + \ldots + x_n \mathbf{a}_n\), i.e., linear combinations of the column vectors of \(A\).
+
+The column vectors \(\mathbf{a}_1, \ldots, \mathbf{a}_n\) therefore define a linear space \(\operatorname{Col}(A)\), i.e., a collection of vectors whose arbitrary linear combinations are also in that collection. We refer to \(\mathbf{a}_1, \ldots, \mathbf{a}_n\) as the *basis* of \(\operatorname{Col}(A)\); we also say that the basis vectors \(\mathbf{a}_1, \ldots, \mathbf{a}_n\) *span* the space \(\operatorname{Col}(A)\).
+
+## Rank of a matrix
+Sometimes a basis can contain redundant basis vectors. For example, consider a matrix \(A = (\mathbf{a}_1, \mathbf{a}_2, \mathbf{a}_3)\) where \(\mathbf{a}_2 = 0.4\mathbf{a}_1 + 0.6\mathbf{a}_3\). Then, in terms of defining the column space \(\operatorname{Col}(A)\), \(\mathbf{a}_2\) is redundant. In this case, we say that \(A\) is not of *full rank*, or that \(A\) is *rank deficient*. The rank of \(A\), denoted by \(rank(A)\), is defined as the number of *linearly independent* column vectors. (It is also equivalent to the number of linearly independent *row* vectors.) The value of \(rank(A)\) gives us a good indicator of the "true dimensionality" of \(A\).
+
+In biology, suppose we have a gene expression matrix \(X \in \mathbb{R}^{n \times p}\) with normalized values. Then \(X\) not having full rank means that the expression level of some gene can be perfectly predicted as the linear combinations of other genes. We can safely exclude this redundant gene from analysis without causing any information loss. In reality, however, due to observational noise, we can rarely have a strictly rank deficient gene expression matrix. Instead, it is often useful to assume that the observed gene expression \(X\) is an additive combination of signal and noise, i.e., \(X = A + E\), where \(A\) is a low-rank signal matrix and \(E\) is a full rank noise matrix.
+
+## Matrix as linear transform
+With the definition of column and row spaces in mind, we can view a matrix \(A \in \mathbb{R}^{n \times p}\) as defining a linear transform from \(\operatorname{A}\) to \(\operatorname{Row(A)}\), i.e., from \(\mathbb{R}^{p}\) to \(\mathbb{R}^n\). Taking \(\mathbf x \in \mathbb{R}^{p \times 1}\), \(A\mathbf x\) defines a vector that lives in \(\mathbb{R}^n\).
+
+For \(X \in \mathbb{R}^{n \times p}\) and \(Y \in \mathbb{R}^{n \times K}\).
+
+## Orthogonalisation
+In data analysis 
+
+## Orthogonal bases
+Suppose \(A \in \mathbb{R}^{n \times p}\) and \(r \equiv rank(A) < p < n\). Then we can find a subset of \(r\) linearly independent column vectors \(\mathbf{a}_{i(1)}, \dots, \mathbf{a}_{i(r)}\), with \(i(1), \dots, i(r) \in \{1, \dots, p\}\), forming a basis for \(\operatorname{Col}(A)\). In general, any set of \(r\) linearly independent vectors living in \(\operatorname{Col}(A)\) can serve as a (non-redundant) basis of \(\operatorname{Col}(A)\). It is often more convenient to find an *orthogonal* basis: when we plot a 3D space, we usually try to render 3 vectors that are perpendicular to each other, e.g., \((1,0,0)\), \((0,1,0)\), and \((0,0,1)\).
+
+## Singular value decomposition
+
+

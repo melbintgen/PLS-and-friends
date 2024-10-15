@@ -1,26 +1,37 @@
 --- 
-title: "A Minimal Book Example"
-author: "John Doe"
+title: "Partial least squares (PLS) and friends"
+author: "JDM and friends"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 #bibliography: [book.bib]
 description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::gitbook,
-  set in the _output.yml file.
+  This is a bookdown to explain main concepts of PLS and its related methods.
 #link-citations: yes
 #github-repo: rstudio/bookdown-demo
 ---
 
 # About
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
 
-## Usage 
+## Notation
 
-Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
+- $a, b$: scalars, i.e., elements of $\mathbb{R}$, the set of real numbers.
 
-Use second-level and higher headings within chapters like: `## A short section` or `### An even shorter section`.
+- $X, Y$: matrices; $X \in \mathbb{R}^{n\times p}$ is an $n$ by $p$ matrix.
 
-The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
+- $\boldsymbol{a}, \boldsymbol{b}$: column vectors (i.e., vectors are by default column vectors); $\boldsymbol{a} \in \mathbb{R}^{n \times 1}$ has $n$ elements, i.e., $\boldsymbol{a} = (a_1,\dots,a_n)^\top$.
+
+- $\lvert a \rvert$: length of vector $\boldsymbol{a}$, i.e., $\lvert \boldsymbol{a} \rvert = \left( \sum_{i=1}^n a_i^2 \right)^{1/2}$.
+
+- $\angle (\boldsymbol{a}, \boldsymbol{b})$: angle (between $-90^\circ$ and $90^\circ$) between two vectors.
+
+- $\bar{\boldsymbol{a}}$: average of elements in $\boldsymbol{a}$, i.e., $\bar{\boldsymbol{a}} = n^{-1} \sum_{i=1}^n a_i$.
+
+- $var(\boldsymbol{a})$: variance of elements in $\boldsymbol{a}$, i.e., $var(\boldsymbol{a}) = n^{-1} \sum_{i=1}^{n} (a_i - \bar{\boldsymbol{a}})^2$.
+
+- $X^\top, \boldsymbol{a}^\top$: transpose of matrix and vectors.
+
+- $\equiv$: always equivalent to, or equivalent by definition; e.g., $c \equiv \boldsymbol{a}^\top \boldsymbol{b}$ says that $c$ is defined as the inner product between $\boldsymbol{a}$ and $\boldsymbol{b}$.
+
+
